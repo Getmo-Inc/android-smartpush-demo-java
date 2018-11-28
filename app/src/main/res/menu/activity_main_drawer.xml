@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_home"
+            android:icon="@drawable/ic_home_black_24dp"
+            android:title="Home" />
+        <item
+            android:id="@+id/nav_tag"
+            android:icon="@drawable/ic_local_offer_black_24dp"
+            android:title="Tags" />
+        <item
+            android:id="@+id/nav_geo"
+            android:icon="@drawable/ic_location_on_black_24dp"
+            android:title="Geofence" />
+        <item
+            android:id="@+id/nav_inbox"
+            android:icon="@drawable/ic_textinbox_black_24dp"
+            android:title="Inbox" />
+        <item
+            android:id="@+id/nav_samples"
+            android:icon="@drawable/ic_folder_special_black_24dp"
+            android:title="Notification Types" />
+    </group>
+
+    <item android:title="Communicate">
+        <menu>
+            <item
+                android:id="@+id/nav_share"
+                android:icon="@drawable/ic_menu_share"
+                android:title="Share" />
+            <item
+                android:id="@+id/nav_send"
+                android:icon="@drawable/ic_menu_send"
+                android:title="Send" />
+        </menu>
+    </item>
+
+</menu>

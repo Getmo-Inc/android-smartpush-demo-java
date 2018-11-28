@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="30dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="TAGS"
+            android:textColor="#000"
+            android:textStyle="bold"
+            android:textSize="20sp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Construa o perfil dos usuários. Então use o perfil para enviar a mensagem certa para a pessoa certa!"
+            android:textColor="@color/gray"
+            android:textSize="16sp"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="30dp"
+        android:gravity="center_vertical"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_margin="20dp"
+            android:background="@drawable/background_gray_rounded">
+
+            <TextView
+                android:id="@+id/label_tags"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#000"
+                android:text="Marque as categorias de noticias do seu interesse!"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="20dp"/>
+
+            <CheckBox
+                android:id="@+id/tag_news_feed_politica"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="POLITICA"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="10dp"/>
+
+            <CheckBox
+                android:id="@+id/tag_news_feed_economia"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="ECONOMIA"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="10dp"/>
+
+            <CheckBox
+                android:id="@+id/tag_news_feed_esportes"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="ESPORTES"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="10dp"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btn_reset"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:layout_gravity="bottom"
+        android:text="RESET TAG [NEWS FEED]" />
+
+</FrameLayout>
