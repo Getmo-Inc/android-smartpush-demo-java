@@ -1,1 +1,1 @@
-include ':app', ':gcm-smartpush-lib-release'
+include ':app'
