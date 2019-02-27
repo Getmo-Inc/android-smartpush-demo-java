@@ -1,4 +1,5 @@
 apply plugin: 'com.android.application'
+apply plugin: 'io.fabric'
 
 android {
     compileSdkVersion 28
@@ -53,5 +54,8 @@ dependencies {
     implementation 'com.jakewharton:butterknife:9.0.0-rc1'
     annotationProcessor 'com.jakewharton:butterknife-compiler:9.0.0-rc1'
     implementation 'com.squareup.picasso:picasso:2.71828'
-    implementation 'org.bitbucket.smartpush:android-smartpush-lib:5.1.6'
+//    implementation 'org.bitbucket.smartpush:android-smartpush-lib:5.1.6'
+    implementation 'com.crashlytics.sdk.android:crashlytics:2.9.9'
+    implementation 'org.bitbucket.getmo:android-smartpush-lib:5.1.7'
 }
+apply plugin: 'com.google.gms.google-services'
