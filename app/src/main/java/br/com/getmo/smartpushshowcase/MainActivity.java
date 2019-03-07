@@ -24,7 +24,7 @@ import br.com.getmo.smartpushshowcase.tag.FragmentTags;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-
+// https://stackoverflow.com/questions/13904505/how-to-get-center-of-map-for-v2-android-maps
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -113,8 +113,9 @@ public class MainActivity extends AppCompatActivity
 
     @OnClick( R.id.fab )
     public void onClick( View view ) {
-        Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                .setAction("Action", null).show();
+//        Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+//                .setAction("Action", null).show();
+
     }
 
     private void initMenuDrawer() {

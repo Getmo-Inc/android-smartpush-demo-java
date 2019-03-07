@@ -19,6 +19,8 @@ import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.location.Location;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -44,10 +46,10 @@ import butterknife.ButterKnife;
  */
 public class MyLocationDemoActivity extends AppCompatActivity
         implements
-            OnMyLocationButtonClickListener,
-            OnMyLocationClickListener,
-            OnMapReadyCallback,
-            ActivityCompat.OnRequestPermissionsResultCallback {
+//            OnMyLocationButtonClickListener,
+//            OnMyLocationClickListener,
+            OnMapReadyCallback {
+//            ActivityCompat.OnRequestPermissionsResultCallback {
 
     /**
      * Request code for location permission request.
@@ -67,6 +69,9 @@ public class MyLocationDemoActivity extends AppCompatActivity
     @BindView( R.id.toolbar )
     Toolbar toolbar;
 
+    @BindView( R.id.btnSendGeolocation )
+    Button sendGeoLocation;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -76,6 +81,15 @@ public class MyLocationDemoActivity extends AppCompatActivity
 
         setSupportActionBar( toolbar );
         getSupportActionBar().setHomeButtonEnabled(true);
+
+        sendGeoLocation.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                LatLng latLng = mMap.getCameraPosition().target;
+                Toast.makeText( MyLocationDemoActivity.this, "Current location:\n" + latLng.toString(), Toast.LENGTH_LONG).show();
+                Smartpush.nearestZone( MyLocationDemoActivity.this, latLng.latitude, latLng.longitude );
+            }
+        });
 
         SupportMapFragment mapFragment =
                 (SupportMapFragment) getSupportFragmentManager().findFragmentById( R.id.map );
@@ -108,10 +122,10 @@ public class MyLocationDemoActivity extends AppCompatActivity
         LatLng portoAlegre = new LatLng(-30.0277, -51.2287 );
         mMap.animateCamera( CameraUpdateFactory.newLatLng( portoAlegre ) );
 
-        mMap.setOnMyLocationButtonClickListener( this );
-        mMap.setOnMyLocationClickListener( this );
-
-        enableMyLocation();
+//        mMap.setOnMyLocationButtonClickListener( this );
+//        mMap.setOnMyLocationClickListener( this );
+//
+//        enableMyLocation();
 
         addGeozonesToMap();
 
@@ -156,67 +170,67 @@ public class MyLocationDemoActivity extends AppCompatActivity
         mMap.animateCamera( CameraUpdateFactory.newLatLng( initialPosition ) );
     }
 
-    /**
-     * Enables the My Location layer if the fine location permission has been granted.
-     */
-    private void enableMyLocation() {
-        if ( ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
-                != PackageManager.PERMISSION_GRANTED) {
-            // Permission to access the location is missing.
-            PermissionUtils.requestPermission(this, LOCATION_PERMISSION_REQUEST_CODE,
-                    Manifest.permission.ACCESS_FINE_LOCATION, true);
-        } else if ( mMap != null ) {
-            // Access to the location has been granted to the app.
-            mMap.setMyLocationEnabled( true );
-        }
-    }
-
-    @Override
-    public boolean onMyLocationButtonClick() {
-        Toast.makeText(this, "MyLocation button clicked", Toast.LENGTH_SHORT).show();
-        // Return false so that we don't consume the event and the default behavior still occurs
-        // (the camera animates to the user's current position).
-        return false;
-    }
-
-    @Override
-    public void onMyLocationClick(@NonNull Location location) {
-        Toast.makeText(this, "Current location:\n" + location, Toast.LENGTH_LONG).show();
-        Smartpush.nearestZone( this, location.getLatitude(), location.getLongitude() );
-    }
-
-    @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions,
-            @NonNull int[] grantResults) {
-        if (requestCode != LOCATION_PERMISSION_REQUEST_CODE) {
-            return;
-        }
-
-        if (PermissionUtils.isPermissionGranted(permissions, grantResults,
-                Manifest.permission.ACCESS_FINE_LOCATION)) {
-            // Enable the my location layer if the permission has been granted.
-            enableMyLocation();
-        } else {
-            // Display the missing permission error dialog when the fragments resume.
-            mPermissionDenied = true;
-        }
-    }
-
-    @Override
-    protected void onResumeFragments() {
-        super.onResumeFragments();
-        if (mPermissionDenied) {
-            // Permission was not granted, display error dialog.
-            showMissingPermissionError();
-            mPermissionDenied = false;
-        }
-    }
-
-    /**
-     * Displays a dialog with error message explaining that the location permission is missing.
-     */
-    private void showMissingPermissionError() {
-        PermissionUtils.PermissionDeniedDialog
-                .newInstance(true).show(getSupportFragmentManager(), "dialog");
-    }
+//    /**
+//     * Enables the My Location layer if the fine location permission has been granted.
+//     */
+//    private void enableMyLocation() {
+//        if ( ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
+//                != PackageManager.PERMISSION_GRANTED) {
+//            // Permission to access the location is missing.
+//            PermissionUtils.requestPermission(this, LOCATION_PERMISSION_REQUEST_CODE,
+//                    Manifest.permission.ACCESS_FINE_LOCATION, true);
+//        } else if ( mMap != null ) {
+//            // Access to the location has been granted to the app.
+//            mMap.setMyLocationEnabled( true );
+//        }
+//    }
+//
+//    @Override
+//    public boolean onMyLocationButtonClick() {
+//        Toast.makeText(this, "MyLocation button clicked", Toast.LENGTH_SHORT).show();
+//        // Return false so that we don't consume the event and the default behavior still occurs
+//        // (the camera animates to the user's current position).
+//        return false;
+//    }
+//
+//    @Override
+//    public void onMyLocationClick(@NonNull Location location) {
+//        Toast.makeText(this, "Current location:\n" + location, Toast.LENGTH_LONG).show();
+//        Smartpush.nearestZone( this, location.getLatitude(), location.getLongitude() );
+//    }
+//
+//    @Override
+//    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions,
+//            @NonNull int[] grantResults) {
+//        if (requestCode != LOCATION_PERMISSION_REQUEST_CODE) {
+//            return;
+//        }
+//
+//        if (PermissionUtils.isPermissionGranted(permissions, grantResults,
+//                Manifest.permission.ACCESS_FINE_LOCATION)) {
+//            // Enable the my location layer if the permission has been granted.
+//            enableMyLocation();
+//        } else {
+//            // Display the missing permission error dialog when the fragments resume.
+//            mPermissionDenied = true;
+//        }
+//    }
+//
+//    @Override
+//    protected void onResumeFragments() {
+//        super.onResumeFragments();
+//        if (mPermissionDenied) {
+//            // Permission was not granted, display error dialog.
+//            showMissingPermissionError();
+//            mPermissionDenied = false;
+//        }
+//    }
+//
+//    /**
+//     * Displays a dialog with error message explaining that the location permission is missing.
+//     */
+//    private void showMissingPermissionError() {
+//        PermissionUtils.PermissionDeniedDialog
+//                .newInstance(true).show(getSupportFragmentManager(), "dialog");
+//    }
 }
