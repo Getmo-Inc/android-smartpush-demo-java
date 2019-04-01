@@ -104,7 +104,7 @@ public class MyLocationDemoActivity extends AppCompatActivity
                 .getInstance( this )
                 .registerReceiver( receiver,
                         new IntentFilter(
-                                SmartpushService.ACTION_GEOZONES_UPDATED ) );
+                                Smartpush.ACTION_GEOZONES_UPDATED ) );
     }
 
     @Override
@@ -135,7 +135,7 @@ public class MyLocationDemoActivity extends AppCompatActivity
     BroadcastReceiver receiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent data ) {
-            if ( data.getAction().equals( SmartpushService.ACTION_GEOZONES_UPDATED ) ) {
+            if ( data.getAction().equals( Smartpush.ACTION_GEOZONES_UPDATED ) ) {
                 addGeozonesToMap();
             }
         }

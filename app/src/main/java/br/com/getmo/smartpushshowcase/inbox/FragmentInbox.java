@@ -76,7 +76,7 @@ public class FragmentInbox extends Fragment {
         LocalBroadcastManager
                 .getInstance( getActivity() )
                 .registerReceiver(receiver,
-                        new IntentFilter( SmartpushService.ACTION_LAST_10_NOTIF ) );
+                        new IntentFilter( Smartpush.ACTION_LAST_10_NOTIF ) );
 
     }
 
@@ -91,7 +91,7 @@ public class FragmentInbox extends Fragment {
     private BroadcastReceiver receiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent data ) {
-            if ( data.getAction().equals( SmartpushService.ACTION_LAST_10_NOTIF ) ) {
+            if ( data.getAction().equals( Smartpush.ACTION_LAST_10_NOTIF ) ) {
                 progress.setVisibility( View.GONE );
 
                 String json = data.getStringExtra( "extra.VALUE" );

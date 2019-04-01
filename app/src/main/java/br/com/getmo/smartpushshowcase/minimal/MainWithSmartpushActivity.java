@@ -30,7 +30,7 @@ public class MainWithSmartpushActivity extends MainActivity {
                 .getInstance( this )
                 .registerReceiver( mRegistrationBroadcastReceiver,
                         new IntentFilter(
-                                SmartpushService.ACTION_REGISTRATION_RESULT ) );
+                                Smartpush.ACTION_REGISTRATION_RESULT ) );
     }
 
     @Override
@@ -45,10 +45,10 @@ public class MainWithSmartpushActivity extends MainActivity {
         @Override
         public void onReceive(Context context, Intent data ) {
 
-            if ( data.getAction().equals( SmartpushService.ACTION_REGISTRATION_RESULT ) ) {
+            if ( data.getAction().equals( Smartpush.ACTION_REGISTRATION_RESULT ) ) {
 
                 SmartpushDeviceInfo device =
-                        data.getParcelableExtra( SmartpushDeviceInfo.EXTRA_DEVICE_INFO );
+                        data.getParcelableExtra( Smartpush.EXTRA_DEVICE_INFO );
 
                 // Use this event to set your custom TAG device Id!
                 Smartpush.setTag( context, "DEMO_APP_ID", device.alias );
