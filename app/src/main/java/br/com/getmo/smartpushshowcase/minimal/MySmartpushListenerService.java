@@ -8,41 +8,41 @@ import android.content.Intent;
 import android.media.RingtoneManager;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
+
+import com.google.firebase.messaging.RemoteMessage;
+
+import java.util.Map;
 
 import br.com.getmo.smartpushshowcase.MainActivity;
 import br.com.getmo.smartpushshowcase.R;
-import br.com.smartpush.SmartpushListenerService;
+import br.com.smartpush.SmartpushMessagingListenerService;
 
 /**
  * Created by GETMO on 16/11/18.
  */
-public class MySmartpushListenerService extends SmartpushListenerService {
+public class MySmartpushListenerService extends SmartpushMessagingListenerService {
 
     @Override
-    protected void handleMessage( Bundle data ) {
-        String message = data.getString( "detail" );
+    protected void handleMessage( RemoteMessage remoteMessage ) {
+        // Custom notification implementation
+        Log.d( "DEBUG-NOT", "push custom" );
+        Log.d( "DEBUG-NOT", "DATA: "+remoteMessage.getData() );
+        Bundle bundle = mapToBundle(remoteMessage.getData());
 
-        /**
-         * Production applications would usually process the message here.
-         * Eg: - Syncing with server.
-         *     - Store message in local database.
-         *     - Update UI.
-         */
-
-        /**
-         * In some cases it may be useful to show a notification indicating to the user
-         * that a message was received.
-         */
-
-        sendNotification( message, data );
+        sendNotification(bundle);
     }
 
-    /**
-     * Create and show a simple notification containing the received GCM message.
-     *
-     * @param message GCM message received.
-     */
-    private void sendNotification( String message, Bundle extras ) {
+    Bundle mapToBundle( Map<String, String> mapData ){
+        Bundle bundle = new Bundle();
+        for ( Map.Entry<String, String> entry : mapData.entrySet()) {
+            bundle.putString( entry.getKey(), entry.getValue() );
+        }
+        return bundle;
+    }
+
+    private void sendNotification( Bundle extras ) {
+        Log.d( "LOG", "Notificacao delegada ao dev." );
         Intent intent = new Intent( this, MainActivity.class );
         intent.putExtras( extras );
         intent.addFlags( Intent.FLAG_ACTIVITY_CLEAR_TOP );
@@ -52,9 +52,9 @@ public class MySmartpushListenerService extends SmartpushListenerService {
 
         Uri defaultSoundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
         Notification.Builder notificationBuilder = new Notification.Builder( this )
-                .setSmallIcon( R.drawable.ic_stat_getmo_icon )
+                .setSmallIcon( R.drawable.ic_getmo )
                 .setContentTitle( "Push Notification!" )
-                .setContentText( message )
+                .setContentText( extras.getString("detail") )
                 .setAutoCancel( true )
                 .setSound( defaultSoundUri )
                 .setContentIntent( pendingIntent );

@@ -45,13 +45,19 @@ dependencies {
     implementation 'androidx.appcompat:appcompat:1.0.2'
     implementation 'com.google.android.material:material:1.1.0-alpha01'
     implementation 'androidx.constraintlayout:constraintlayout:2.0.0-alpha2'
-    implementation 'com.google.android.gms:play-services-gcm:16.0.0'
+//    implementation 'com.google.android.gms:play-services-gcm:16.0.0'
     implementation 'com.google.android.gms:play-services-maps:16.0.0'
+
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test:runner:1.1.0'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.0'
     implementation 'com.jakewharton:butterknife:9.0.0-rc1'
     annotationProcessor 'com.jakewharton:butterknife-compiler:9.0.0-rc1'
     implementation 'com.squareup.picasso:picasso:2.71828'
-    implementation 'org.bitbucket.smartpush:android-smartpush-lib:5.1.6'
+    implementation 'org.bitbucket.getmo:android-smartpush-lib:9.0.0'
+
+    implementation "com.google.firebase:firebase-messaging:17.3.4"
+
 }
+
+apply plugin: 'com.google.gms.google-services'
